@@ -11,7 +11,9 @@ We predicted the status of a startup through a 10-fold cross-validated logistic 
 Through data analysis, we found that startups were steadily gaining efficiency – the success rate of startups from 2007 to 2014 rose by 10% whereas the average total funding had decreased by 92%. For predicting the success of startups utilizing all relevant features, the random forest model had the best prediction accuracy with an AUC score of 0.76 against the logistic regression model’s AUC score of 0.68. 
 
 By 2027, the venture capital industry is expected to grow to $580B USD and our findings illustrate how machine learning can be leveraged by venture capital firms to maximize the return on investment of their funds and elect to invest in startups that are most likely to succeed.
-
+<br>
+<br>
+<br>
 ## Report
 
 ### Introduction  
@@ -161,27 +163,12 @@ Referencing the key limitations discussed in the Discussion section, there are n
 
 [3] Team, C.P. (2022) Where does Crunchbase get their data?, crunchbase.com. Crunchbase. Available at: https://support.crunchbase.com/hc/en-us/articles/360009616013-Where-does-Crunchbase-get-their-data- 
 
-[4] F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, P. Prettenhofer, R. 
-
-Weiss, V. Dubourg, J. Vanderplas, A. Passos, D. Cournapeau, M. Brucher, M. Perrot, and E. 		Duchesnay. Scikit-learn: Machine learning in Python. Journal of Machine Learning Research, 12:2825-2830, 2011. 
-
- 
+[4] F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, P. Prettenhofer, R. Weiss, V. Dubourg, J. Vanderplas, A. Passos, D. Cournapeau, M. Brucher, M. Perrot, and E. 		Duchesnay. Scikit-learn: Machine learning in Python. Journal of Machine Learning Research, 12:2825-2830, 2011. 
 
 [5] Anderson, E. (2022) Venture Capital Investment Market to reach US$ 584.4 billion by 2027, catalyzed by rising number of start-ups, EIN News. EIN Presswire. Available at: https://www.einnews.com/pr_news/593165703/venture-capital-investment-market-to-reach-us-584-4-billion-by-2027-catalyzed-by-rising-number-of-start-ups  
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
+<br>
+<br>
+## Appendices
 
 ### Appendix A: Description of features and the key features used during modeling 
 
@@ -189,65 +176,47 @@ The columns consist of company names and founding dates, location information, i
 
  
 
-Company names: This refers to the names of each company which we used to reference and confirm some numbers during the initial EDA.  
+1. Company names: This refers to the names of each company which we used to reference and confirm some numbers during the initial EDA.  
+2. Founding dates: This refers to the month and year that the startup was founded.  
+3. Location information: This refers to the region that the startup was based in (at different granularities of city and country).  
+4. Industry information: This refers to each startup’s industry/market.  
+5. Detailed funding information: This refers to all the different types of funding that each startup received, covering angel investors, venture funding, and all the different rounds of venture funding. Venture funding for early-stage companies typically begins with round A and continues to Round B, C, D, etc. as the company grows and adds more investors.  
 
-Founding dates: This refers to the month and year that the startup was founded.  
 
-Location information: This refers to the region that the startup was based in (at different granularities of city and country).  
+The graph below lists all the features used for the baseline models of Logistic Regression and Random Forest, and how we transformed the features for use in the model. 
 
-Industry information: This refers to each startup’s industry/market.  
-
-Detailed funding information: This refers to all the different types of funding that each startup received, covering angel investors, venture funding, and all the different rounds of venture funding. Venture funding for early-stage companies typically begins with round A and continues to Round B, C, D, etc. as the company grows and adds more investors.  
-
- 
-
-The graph below lists all the features used for the baseline models of Logistic Regression and Random Forest, and how we transformed the features for use in the model.   
-
- 
-
+![AppendixA.png](Images/AppendixA.png?raw=true)
+<br>
+<br>
 ### Appendix B: Exploratory Data Analysis (EDA) and key insights from EDA 
 
-EDA key insights  
+#### EDA key insights  
 
-Late-stage funding comprised the largest share, with very minimal investment comprised of pre-seed funding sources, which made sense given the explanation of the categories above. 
+1. Late-stage funding comprised the largest share, with very minimal investment comprised of pre-seed funding sources, which made sense given the explanation of the categories above. 
+2. Diving into late-stage funding (comprised of VC funding rounds B-H), we observed that the three main funding rounds from late-stage VC funding are Rounds B, C, and D, with approximately $60B, $51B, and $32B in funding, respectively. The remaining four rounds comprised less than 25% of the total investment, which we attributed to the fact that many of the “success” firms will go public or begin operating from self-sustained revenue after only a few rounds of VC funding. 
+3. Some of the correlated features of interest were Rounds A-H and venture, which are likely due to venture capital being the primary source of rounds A-H funding. Round G was highly correlated with Round H funding, and total investment had some degree of expected correlation with many of the other monetary features as it is a summation of the monetary features. 
+4. There are over 4000 companies in the Software market, the highest amount of funding was received by companies in the Biotechnology market. A similar trend followed for other markets as well, as there was not an exact direct proportional relationship between the number of companies and the total investment by market, which is an important insight when making investment decisions. 
+5. The most common URL-ending, .com, comprised over 85% of the total investment and over 90% of total companies, so we visualized these plots excluding .com URL-endings. We saw that .net is the most prominent outside of .com with over 600 startups and $5B of investment. We also saw that .co is the second highest in # of startups but only ninth highest in total investments. This, combined with other differences, indicated that having a more common website ending may not indicate more total investment 
 
-Diving into late-stage funding (comprised of VC funding rounds B-H), we observed that the three main funding rounds from late-stage VC funding are Rounds B, C, and D, with approximately $60B, $51B, and $32B in funding, respectively. The remaining four rounds comprised less than 25% of the total investment, which we attributed to the fact that many of the “success” firms will go public or begin operating from self-sustained revenue after only a few rounds of VC funding. 
+#### EDA supplemental graphs  
 
-Some of the correlated features of interest were Rounds A-H and venture, which are likely due to venture capital being the primary source of rounds A-H funding. Round G was highly correlated with Round H funding, and total investment had some degree of expected correlation with many of the other monetary features as it is a summation of the monetary features. 
+1. Heatmap of correlated features, showing that Rounds A-H and venture, and Round G and Round H are correlated. 
 
-There are over 4000 companies in the Software market, the highest amount of funding was received by companies in the Biotechnology market. A similar trend followed for other markets as well, as there was not an exact direct proportional relationship between the number of companies and the total investment by market, which is an important insight when making investment decisions. 
+![AppendixB1.png](Images/AppendixB1.png?raw=true)
 
-The most common URL-ending, .com, comprised over 85% of the total investment and over 90% of total companies, so we visualized these plots excluding .com URL-endings. We saw that .net is the most prominent outside of .com with over 600 startups and $5B of investment. We also saw that .co is the second highest in # of startups but only ninth highest in total investments. This, combined with other differences, indicated that having a more common website ending may not indicate more total investment 
+2. Total investment by market type, showing that the Biotechnology market received the highest amount of funding. 
 
- 
+![AppendixB2.png](Images/AppendixB2.png?raw=true)
 
-EDA supplemental graphs  
+3. Total investment received by startups grouped by URL-ending. 
 
-Heatmap of correlated features, showing that Rounds A-H and venture, and Round G and Round H are correlated. 
+![AppendixB3.png](Images/AppendixB3.png?raw=true)
 
- 
-XXX
- 
+4. The success rate of startups by URL-ending. 
 
-Total investment by market type, showing that the Biotechnology market received the highest amount of funding. 
+![AppendixB4.png](Images/AppendixB4.png?raw=true)
 
- 
-XXX
- 
+5. Startups founded by year. The startups founded before 1995 form a small subset of the dataset. 
 
-Total investment received by startups grouped by URL-ending. 
+![AppendixB5.png](Images/AppendixB5.png?raw=true)
 
- 
-XXX
- 
-
-The success rate of startups by URL-ending. 
-
- 
-XXX
- 
-
-
-Startups founded by year. The startups founded before 1995 form a small subset of the dataset. 
-
- 
