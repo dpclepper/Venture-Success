@@ -1,4 +1,8 @@
 # Predicting Startup Success with Machine Learning
+<br>
+<p align="center">
+  <img width="600" height="350" src="https://github.com/dpclepper/Venture-Success/blob/main/Images/Background.png">
+</p>
 
 ## Abstract
 
@@ -118,10 +122,12 @@ The optimal hyperparameter combination to maximize the ROC curve AUC for the mod
 |:--:| 
 | **Figure 6:** ROC curves for random forest models showing True Positive Rate and False Positive Rate tradeoff for different discrimination thresholds |
  
+#### Confusion Matrices
 
-| ![Figure7.png](Images/Figure7.png?raw=true) | 
-|:--:| 
-| **Figure 7:** Confusion matrices for logistic regression (left) and random forest (right) models showing intersection of actual target classes and target predictions |
+<table>
+    <tr><th><img width="700" height="350" src="https://github.com/dpclepper/Venture-Success/blob/main/Images/Figure7.png"></th></tr>
+    <tr><td><b>Figure 7:</b> Confusion matrices for logistic regression (left) and random forest (right) models showing intersection of actual target classes and target predictions</td></tr>
+</table>
 
 Looking at the confusion matrices of the logistic regression and random forest models with the highest AUC scores, respectively, there is a clear difference between the two models in terms of correct and incorrect classifications (Figure 7). Both models had high precision, with 96.5% for logistic regression and 97.9% for random forest. Recall was much lower with 85.1% and 70.0%, respectively. Specificity was also lower with 50.1% and 74.6% for the two models, respectively. False positives (type I errors) made up 2.9% of the logistic regression classifications and 1.4% of the random forest classifications, while false negatives (type II errors) made up 14.1% of the logistic regression classifications and 28.3% of the random forest classifications. 
 
@@ -130,12 +136,12 @@ Looking at the confusion matrices of the logistic regression and random forest m
 
 #### Interpretability and Prediction 
 
-Both the logistic regression models and random forest models we ran emphasized interpretability. With our logistic regression model, we can take coefficients generated from the model and interpret those coefficients as an increase or decrease in the log of odds of our status target. We can also interpret features that had their coefficients reduced to zero as being less important in explanation of the success of a startup. On the other hand, with our random forest models, we were able to derive feature importances using mean decrease in impurity across the individual CART models that were assembled in the ensemble (Figure 8). From this bar chart, we can see that the age a startup received its first funding, the year a startup was founded, the funding a startup receives in early stages, the length of the company name, and the amount of funding rounds a startup receives were the most important features in classifying the startups’ success.  
+Both the logistic regression models and random forest models we ran emphasized interpretability. With our logistic regression model, we can take coefficients generated from the model and interpret those coefficients as an increase or decrease in the log of odds of our status target. We can also interpret features that had their coefficients reduced to zero as being less important in explanation of the success of a startup. On the other hand, with our random forest models, we were able to derive feature importances using mean decrease in impurity across the individual CART models that were assembled in the ensemble (Figure 8). From this bar chart, we can see that the age a startup received its first funding, the year a startup was founded, the funding a startup receives in early stages, the length of the company name, and the amount of funding rounds a startup receives were the most important features in classifying the startups’ success.
 
-
-| ![Figure8.png](Images/Figure8.png?raw=true) | 
-|:--:| 
-| **Figure 8:** Bar chart of mean decrease in impurity (MDI) showing median (blue bar) and variance (black line) of MDI for features with median MDI greater than or equal to 0.005 |
+<table>
+    <tr><th><img width="600" height="400" src="https://github.com/dpclepper/Venture-Success/blob/main/Images/Figure8.png"></th></tr>
+    <tr><td><b>Figure 8:</b> Bar chart of mean decrease in impurity (MDI) showing median (blue bar) and variance (black line) of MDI for features with median MDI greater than or equal to 0.005</td></tr>
+</table>
 
 Given our intent to use our models in a predictive manner, we saw it fit to create a logistic regression model without year as a feature. Since founded_year was an important feature in both models’ AUC values, patterns in the data tied to the year cannot necessarily be used to extrapolate patterns in the data if startups founded in more recent years (past the year 2014) were to be added to the dataset. We saw the AUC heavily affected by the removal of this feature from the logistic regression model, where it decreased from 0.79 to 0.67. 
 
